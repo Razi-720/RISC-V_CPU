@@ -1,0 +1,16 @@
+{
+  "timestamp": "2025-10-24 00:15:10",
+  "performance": {
+    "cpi": 1.0100334448160535,
+    "ipc": 0.9900662251655629,
+    "branch_miss_rate": 0,
+    "stall_rate": 0.0,
+    "hazard_rate": 0.0,
+    "simulation_speed": 485.8823767687214
+  },
+  "functional_verification": {
+    "total_mismatches": 0,
+    "mismatch_breakdown": {},
+    "mismatches": []
+  }
+}

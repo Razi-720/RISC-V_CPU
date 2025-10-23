@@ -1,0 +1,6 @@
+<testsuites name="results">
+  <testsuite name="all" package="all">
+    <property name="random_seed" value="1761259318" />
+    <testcase name="test_pipeline_performance" classname="tests.test_pipeline_rv32i" file="/foss/designs/CPU/RV32I_Piplined/tests/test_pipeline_rv32i.py" lineno="221" time="5.889406204223633" sim_time_ns="2020.001" ratio_time="342.9889075321958" />
+  </testsuite>
+</testsuites>

@@ -1,0 +1,21 @@
+2025-10-24 00:41:59,104 - cocotb.regression - INFO - Found test tests.test_pipeline_rv32i.test_pipeline_performance
+2025-10-24 00:41:59,105 - cocotb.regression - INFO - [34mrunning[49m[39m test_pipeline_performance (1/1)
+  Test pipeline performance and efficiency
+2025-10-24 00:41:59,105 - tests.test_pipeline_rv32i - INFO - Starting pipeline performance test
+2025-10-24 00:42:04,368 - tests.driver - INFO - Resetting processor...
+2025-10-24 00:42:04,454 - tests.driver - INFO - Loaded 51 instructions at base 0x00000000
+2025-10-24 00:42:04,644 - tests.test_pipeline_rv32i - INFO - Pipeline CPI: 4.06
+2025-10-24 00:42:04,644 - tests.test_pipeline_rv32i - WARNING - High CPI detected: 4.06
+2025-10-24 00:42:04,644 - tests.test_pipeline_rv32i - INFO - Total cycles: 203
+2025-10-24 00:42:04,645 - tests.test_pipeline_rv32i - INFO - Instructions: 50
+2025-10-24 00:42:04,645 - tests.test_pipeline_rv32i - INFO - Stalls: 0
+2025-10-24 00:42:04,645 - tests.test_pipeline_rv32i - INFO - Hazards: 0
+2025-10-24 00:42:05,030 - cocotb.regression - INFO - test_pipeline_performance [32mpassed[49m[39m
+2025-10-24 00:42:05,032 - cocotb.regression - INFO - *************************************************************************************************************
+** TEST                                                 STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+*************************************************************************************************************
+** tests.test_pipeline_rv32i.test_pipeline_performance  [32m PASS [49m[39m       2020.00           5.89        342.99  **
+*************************************************************************************************************
+** TESTS=1 PASS=1 FAIL=0 SKIP=0                                      2020.00           6.27        322.11  **
+*************************************************************************************************************
+
