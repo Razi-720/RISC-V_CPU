@@ -653,7 +653,7 @@ module Reg_F_D (
 
 ---
 
-## 🤝 Contributing
+<!-- ## 🤝 Contributing
 
 Contributions are welcome! Please follow these guidelines:
 
@@ -668,4 +668,4 @@ Contributions are welcome! Please follow these guidelines:
 ### Code Standards
 
 - Follow existing RTL coding style
-- Add comprehensive comments for complex logic
+- Add comprehensive comments for complex logic -->
