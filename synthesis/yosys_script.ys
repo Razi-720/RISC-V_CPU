@@ -1,0 +1,73 @@
+###############################################################################
+# Yosys Synthesis Script for RV32I 5-Stage Pipelined Processor
+# Modified to avoid multi-dimensional reg arrays in output netlist
+###############################################################################
+
+echo on
+log synthesis.log
+
+# Liberty
+log "Reading Sky130A HD liberty file..."
+read_liberty -lib /foss/pdks/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+# Read RTL
+log "Reading RTL design files..."
+read_verilog -sv ../src/Pip_RV32I.v
+log "Design files read successfully."
+
+# Hierarchy check
+log "Checking design hierarchy..."
+hierarchy -check -top Pip_RV32I
+log "Hierarchy check complete."
+
+# High-level synthesis: proc + flatten (important)
+log "Starting high-level synthesis..."
+proc
+flatten                # ensure flattened representation
+opt
+# Allow memories to be recognized and mapped
+# (remove 'memory -nomap' since it prevents memory recognition)
+memory_map             # convert memory constructs to mapped flops/cells
+opt
+fsm
+opt
+log "High-level synthesis complete."
+
+# Technology mapping
+log "Starting technology mapping..."
+techmap
+opt
+dfflibmap -liberty /foss/pdks/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+abc -liberty /foss/pdks/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib -constr ../src/constraints.sdc
+clean
+opt
+log "Technology mapping complete."
+
+# Post-mapping optimization
+log "Running post-mapping optimization..."
+clean
+opt
+opt_clean -purge
+log "Post-mapping optimization complete."
+
+# Statistics and reports
+log "Generating statistics..."
+stat -liberty /foss/pdks/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+tee -o synthesis_stats.txt stat -liberty /foss/pdks/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+check
+log "Statistics generated successfully."
+
+# Write outputs - use -norename to preserve names and avoid weird array syntax where possible
+log "Writing output files..."
+write_verilog -noattr -nohex synthesized_netlist.v
+# write_verilog -noattr -nohex synthesized_netlist_debug.v
+write_blif synthesized_netlist.blif
+write_json synthesized_netlist.json
+log "Output files written successfully."
+
+log "=========================================="
+log "Synthesis Complete!"
+log "=========================================="
+log "Design: Pip_RV32I (RV32I 5-Stage Pipeline)"
+log "Target: Sky130A HD Standard Cells"
+log "=========================================="
